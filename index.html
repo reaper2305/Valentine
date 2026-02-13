@@ -14,28 +14,38 @@ body {
     justify-content: center;
     align-items: center;
     background: radial-gradient(circle at top, #fff1f5, #ffe3ec);
-    overflow: hidden;
     font-family: 'Cormorant Garamond', serif;
+    overflow: hidden;
 }
 
 /* Envelope */
 .envelope {
-    width: 300px;
+    width: 320px;
     height: 200px;
-    background: #f7d6df;
-    border-radius: 10px;
+    background: #f6cdd7;
+    border-radius: 12px;
     box-shadow: 0 25px 60px rgba(0,0,0,0.25);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 50px;
+    flex-direction: column;
     cursor: pointer;
-    transition: transform 0.6s ease, opacity 0.6s ease;
+    transition: all 0.6s ease;
+    z-index: 2;
 }
 
-.envelope.open {
-    transform: scale(0.8);
-    opacity: 0;
+.envelope:hover {
+    transform: scale(1.05);
+}
+
+.envelope span {
+    font-size: 42px;
+}
+
+.envelope p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #7a1e3a;
 }
 
 /* Letter */
@@ -47,18 +57,18 @@ body {
     box-shadow: 0 35px 80px rgba(0,0,0,0.2);
     border-radius: 8px;
     opacity: 0;
-    transform: translateY(40px);
-    transition: all 1.2s ease;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
-    background-size: 100% 34px;
+    transform: scale(0.9);
+    transition: all 1s ease;
+    display: none;
 }
 
 .letter.show {
+    display: block;
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
 }
 
-/* Fold corner */
+/* Fold */
 .letter::after {
     content: "";
     position: absolute;
@@ -69,7 +79,6 @@ body {
     border-color: transparent #f3e2e6 transparent transparent;
 }
 
-/* Title */
 h1 {
     font-family: 'Great Vibes', cursive;
     font-size: 56px;
@@ -77,14 +86,13 @@ h1 {
     color: #c9184a;
 }
 
-/* Paragraph */
 p {
     font-size: 22px;
     line-height: 36px;
     color: #444;
 }
 
-/* Buttons */
+/* Button */
 .buttons {
     text-align: center;
     margin-top: 40px;
@@ -96,15 +104,11 @@ button {
     border-radius: 30px;
     border: none;
     cursor: pointer;
-}
-
-#yes {
     background: #c9184a;
     color: white;
-    box-shadow: 0 12px 30px rgba(201,24,74,.4);
 }
 
-/* Final Screen */
+/* Final */
 .final {
     position: fixed;
     inset: 0;
@@ -114,7 +118,7 @@ button {
     align-items: center;
     opacity: 0;
     transition: opacity 2s ease;
-    z-index: 10;
+    z-index: 5;
 }
 
 .final.show {
@@ -138,23 +142,26 @@ button {
 
 <body>
 
-<div class="envelope" id="envelope">💌</div>
+<div class="envelope" id="envelope">
+    <span>💌</span>
+    <p>Click to open</p>
+</div>
 
 <div class="letter" id="letter">
     <h1>My dearest Palak,</h1>
 
     <p>
-        Somewhere between quiet moments  
+        Somewhere between quiet conversations  
         and the way you smile without trying,  
         you became something very special to me.  
 
-        So I wanted to ask you in the most sincere way…  
+        So today, I’m asking from the heart…  
 
         Will you be my Valentine?
     </p>
 
     <div class="buttons">
-        <button id="yes">Yes 💕</button>
+        <button id="yesBtn">Yes 💕</button>
     </div>
 </div>
 
@@ -163,21 +170,23 @@ button {
 </div>
 
 <script>
-const envelope = document.getElementById("envelope");
-const letter = document.getElementById("letter");
-const final = document.getElementById("final");
+document.addEventListener("DOMContentLoaded", function() {
 
-envelope.onclick = () => {
-    envelope.classList.add("open");
-    setTimeout(() => {
+    const envelope = document.getElementById("envelope");
+    const letter = document.getElementById("letter");
+    const final = document.getElementById("final");
+    const yesBtn = document.getElementById("yesBtn");
+
+    envelope.addEventListener("click", function() {
         envelope.style.display = "none";
         letter.classList.add("show");
-    }, 600);
-};
+    });
 
-document.getElementById("yes").onclick = () => {
-    final.classList.add("show");
-};
+    yesBtn.addEventListener("click", function() {
+        final.classList.add("show");
+    });
+
+});
 </script>
 
 </body>
