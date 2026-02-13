@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For Palak 💖</title>
+    <title>For Palak 🔥</title>
     <style>
         body {
             margin: 0;
@@ -9,84 +9,83 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            background: radial-gradient(circle at top, #1a0006, #000);
             font-family: 'Segoe UI', sans-serif;
             overflow: hidden;
             text-align: center;
+            color: #fff;
         }
 
         .card {
-            background: white;
+            background: rgba(15, 0, 5, 0.9);
             padding: 50px;
             border-radius: 25px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 25px 80px rgba(255, 0, 80, 0.45);
+            width: 440px;
+            transition: 1s ease;
             position: relative;
             z-index: 10;
-            width: 420px;
-            transition: 1s ease;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         h1 {
-            color: #ff3e6c;
+            color: #ff4d6d;
             font-size: 26px;
             min-height: 60px;
+            text-shadow: 0 0 10px rgba(255,77,109,0.6);
         }
 
         p {
             font-size: 16px;
-            color: #555;
-            margin-bottom: 20px;
+            color: #f2cbd3;
+            margin-bottom: 25px;
+            line-height: 1.6;
         }
 
         button {
-            padding: 12px 28px;
+            padding: 12px 30px;
             font-size: 16px;
             border: none;
             border-radius: 30px;
             cursor: pointer;
             margin: 10px;
-            transition: 0.3s;
+            transition: all 0.35s ease;
         }
 
         #yesBtn {
-            background-color: #ff3e6c;
+            background: linear-gradient(135deg, #ff1f5a, #ff6b81);
             color: white;
-        }
-
-        #yesBtn:hover {
-            background-color: #ff174f;
+            box-shadow: 0 0 30px rgba(255,31,90,0.7);
         }
 
         #noBtn {
-            background-color: #cccccc;
+            background-color: #333;
+            color: #eee;
+            position: relative;
         }
 
-        .heart {
+        /* Floating after-dark icons */
+        .float {
             position: absolute;
-            color: #ff4d6d;
-            animation: float 6s linear infinite;
+            animation: floatUp 9s linear infinite;
+            opacity: 0.85;
         }
 
-        @keyframes float {
-            0% { transform: translateY(100vh); opacity: 0; }
+        @keyframes floatUp {
+            0% { transform: translateY(110vh); opacity: 0; }
             10% { opacity: 1; }
             100% { transform: translateY(-10vh); opacity: 0; }
         }
 
+        /* Final Screen */
         .final-screen {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #ff3e6c, #ff8fa3);
+            inset: 0;
+            background: radial-gradient(circle, #400012, #000);
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
             opacity: 0;
             pointer-events: none;
             transition: opacity 2s ease;
@@ -98,13 +97,18 @@
             pointer-events: all;
         }
 
-        .glow {
-            animation: glow 2s infinite alternate;
+        .final-text {
+            font-size: 44px;
+            font-weight: bold;
+            color: #ff6b81;
+            text-shadow: 0 0 25px rgba(255,107,129,0.8);
         }
 
-        @keyframes glow {
-            from { text-shadow: 0 0 10px white; }
-            to { text-shadow: 0 0 25px white, 0 0 40px pink; }
+        .final-sub {
+            font-size: 22px;
+            margin-top: 15px;
+            color: #ffd6e0;
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -118,30 +122,30 @@
     <h1 id="typing"></h1>
 
     <p>
-        Every time you smile, my world feels lighter.  
-        Every moment with you feels magical. ✨  
-        I don’t just want a day with you…  
-        I want forever moments with you.
+        Dim lights. Slow music.  
+        Wine on your lips. My hands on your waist. 🍷  
+        This Valentine’s isn’t about cute plans…  
+        It’s about **what happens after midnight**.
     </p>
 
-    <button id="yesBtn" onclick="sayYes()">Yes 💕</button>
-    <button id="noBtn">No 😢</button>
+    <button id="yesBtn" onclick="sayYes()">Yes 😈</button>
+    <button id="noBtn" onclick="handleNo()">No 😌</button>
 </div>
 
 <div class="final-screen" id="finalScreen">
-    <div class="glow">I love you, Palak ❤️</div>
-    <div style="font-size:22px; margin-top:15px;">Forever & Always 💖</div>
+    <div class="final-text">Come here, Palak 🔥</div>
+    <div class="final-sub">Tonight belongs to us.</div>
 </div>
 
 <script>
-    // Typing Animation
-    const text = "Palak, will you be my Valentine? 💖";
+    // Typing animation
+    const text = "Palak, will you be my Valentine tonight? 🔥";
     let i = 0;
     function typeWriter() {
         if (i < text.length) {
             document.getElementById("typing").innerHTML += text.charAt(i);
             i++;
-            setTimeout(typeWriter, 60);
+            setTimeout(typeWriter, 55);
         }
     }
     typeWriter();
@@ -149,75 +153,56 @@
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
 
-    let scale = 1;
     let attempts = 0;
+    let yesScale = 1;
 
-    const noTexts = [
-        "Are you sure? 🥺",
-        "Really sure? 😢",
-        "Think again 😏",
-        "Last chance 👀",
-        "You can't escape love 💘"
+    const noMessages = [
+        "Playing hard to get? 😏",
+        "You’re enjoying this 😌",
+        "Don’t tease me 🍷",
+        "You already know the answer…"
     ];
 
-    document.addEventListener("mousemove", function(e) {
-        if (attempts >= 5) return;
+    function handleNo() {
+        if (attempts < 4) {
+            noBtn.innerHTML = noMessages[attempts];
 
-        const rect = noBtn.getBoundingClientRect();
-        const distance = Math.hypot(
-            e.clientX - (rect.left + rect.width / 2),
-            e.clientY - (rect.top + rect.height / 2)
-        );
+            const moveX = (Math.random() - 0.5) * 60;
+            const moveY = (Math.random() - 0.5) * 25;
+            noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
 
-        if (distance < 80) {
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
-
-            noBtn.style.position = "absolute";
-            noBtn.style.left = x + "px";
-            noBtn.style.top = y + "px";
-
-            noBtn.innerHTML = noTexts[attempts];
-
-            scale += 0.15;
-            yesBtn.style.transform = `scale(${scale})`;
+            yesScale += 0.3;
+            yesBtn.style.transform = `scale(${yesScale})`;
 
             attempts++;
-
-            if (attempts >= 5) {
-                noBtn.innerHTML = "Fine… Yes 💖";
-                noBtn.style.position = "static";
-                noBtn.onclick = sayYes;
-            }
+        } else {
+            noBtn.innerHTML = "Okay… yes 😈";
+            noBtn.onclick = sayYes;
         }
-    });
-
-    // Floating hearts
-    function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "💖";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = Math.random() * 20 + 20 + "px";
-        heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
     }
-    setInterval(createHeart, 800);
 
-    // YES action
+    // After-dark floating symbols (suggestive, not explicit)
+    const items = ["🔥","🍷","🕯️","💋","🖤","🌙"];
+
+    function createFloat() {
+        const el = document.createElement("div");
+        el.classList.add("float");
+        el.innerHTML = items[Math.floor(Math.random() * items.length)];
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.fontSize = Math.random() * 22 + 22 + "px";
+        el.style.animationDuration = Math.random() * 4 + 6 + "s";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 9000);
+    }
+    setInterval(createFloat, 800);
+
     function sayYes() {
         document.getElementById("mainCard").style.opacity = "0";
         setTimeout(() => {
             document.getElementById("finalScreen").classList.add("show-final");
-        }, 800);
-
-        for (let i = 0; i < 60; i++) {
-            createHeart();
-        }
+        }, 900);
     }
 </script>
 
 </body>
 </html>
-
