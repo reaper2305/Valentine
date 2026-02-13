@@ -1,105 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>For Palak 💖</title>
+<meta charset="UTF-8">
+<title>For Palak 💖</title>
 
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            background: linear-gradient(135deg, #ffe6ec, #fff7fa);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', sans-serif;
-            overflow: hidden;
-        }
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ffe9f0, #fff5f8);
+        font-family: 'Segoe UI', sans-serif;
+        overflow: hidden;
+    }
 
-        .card {
-            background: white;
-            padding: 45px;
-            border-radius: 24px;
-            box-shadow: 0 20px 45px rgba(255, 120, 150, 0.25);
-            text-align: center;
-            max-width: 420px;
-            z-index: 2;
-        }
+    .card {
+        background: white;
+        padding: 50px;
+        border-radius: 28px;
+        box-shadow: 0 25px 60px rgba(255, 120, 160, 0.25);
+        text-align: center;
+        max-width: 460px;
+        position: relative;
+        z-index: 2;
+        animation: fadeIn 1.2s ease;
+    }
 
-        h1 {
-            color: #ff4d6d;
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
-        p {
-            color: #555;
-            font-size: 16px;
-            line-height: 1.7;
-            margin-bottom: 30px;
-        }
+    h1 {
+        color: #ff4d6d;
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
 
-        button {
-            padding: 12px 28px;
-            font-size: 16px;
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            margin: 10px;
-            transition: transform 0.25s ease;
-        }
+    p {
+        color: #555;
+        font-size: 17px;
+        line-height: 1.8;
+        margin-bottom: 35px;
+    }
 
-        #yesBtn {
-            background-color: #ff4d6d;
-            color: white;
-        }
+    button {
+        padding: 13px 30px;
+        font-size: 16px;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        margin: 10px;
+        transition: all 0.25s ease;
+    }
 
-        #noBtn {
-            background-color: #eee;
-            color: #444;
-        }
+    #yesBtn {
+        background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+        color: white;
+        box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
+    }
 
-        .message {
-            margin-top: 25px;
-            font-size: 18px;
-            color: #ff4d6d;
-            font-weight: 600;
-            min-height: 40px;
-        }
+    #yesBtn:hover {
+        transform: scale(1.07);
+    }
 
-        /* Floating hearts */
-        .heart {
-            position: absolute;
-            font-size: 18px;
-            animation: floatUp 6s linear infinite;
-            opacity: 0.8;
-        }
+    #noBtn {
+        background-color: #eee;
+        color: #444;
+    }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh);
-                opacity: 0;
-            }
-        }
-    </style>
+    .message {
+        margin-top: 25px;
+        font-size: 18px;
+        color: #ff4d6d;
+        font-weight: 600;
+        min-height: 40px;
+        white-space: pre-line;
+    }
+
+    /* Floating soft hearts */
+    .heart {
+        position: absolute;
+        font-size: 18px;
+        animation: floatUp 7s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(100vh); opacity: 0; }
+        10% { opacity: 1; }
+        100% { transform: translateY(-10vh); opacity: 0; }
+    }
+</style>
 </head>
+
 <body>
 
 <div class="card">
     <h1>Palak, will you be my Valentine? 💖</h1>
 
     <p>
-        I know Valentine’s is about hearts and roses…  
-        but for me, it’s really about *you*.  
-        Your smile, your warmth, and maybe  
-        sitting a little closer than usual 😌
+        Valentine’s Day is supposed to be about roses and candlelight…  
+        but for me, it’s about the way you smile when you’re happy.  
+        The way your presence makes everything feel softer.  
+        And maybe… holding your hand a little longer than usual.  
+        
+        I don’t need anything grand.  
+        I just want to spend that day with you.
     </p>
 
     <button id="yesBtn">Yes 💕</button>
@@ -116,18 +125,18 @@
     let noClicks = 0;
     let yesScale = 1;
 
-    const noResponses = [
-        "Hmm… think about it once more 😌",
-        "Still no? I’ll be on my best behavior 😉",
-        "Okay but… we’d look really cute together 💖",
-        "Alright, you win… or maybe you don’t 😏"
+    const noLines = [
+        "Are you sure? I promise I’ll make it special 🌷",
+        "Still no? I was planning something cute 😌",
+        "Hmm… I guess I’ll just have to try harder 💖",
+        "Okay… last chance before I start blushing 😅"
     ];
 
     noBtn.addEventListener("click", () => {
-        if (noClicks < noResponses.length) {
-            message.innerText = noResponses[noClicks];
+        if (noClicks < noLines.length) {
+            message.innerText = noLines[noClicks];
 
-            yesScale += 0.15;
+            yesScale += 0.12;
             yesBtn.style.transform = `scale(${yesScale})`;
 
             noClicks++;
@@ -141,20 +150,20 @@
 
     function yesClicked() {
         message.innerText =
-            "That makes me smile more than you know 💖\nI’m really looking forward to Valentine’s with you, Palak.";
+            "You just made my heart very, very happy 💖\nI can't wait to spend Valentine’s with you, Palak.";
     }
 
     // Floating hearts
     function createHeart() {
         const heart = document.createElement("div");
         heart.classList.add("heart");
-        heart.innerHTML = "💖";
+        heart.innerHTML = "💗";
         heart.style.left = Math.random() * 100 + "vw";
         heart.style.fontSize = Math.random() * 14 + 16 + "px";
-        heart.style.animationDuration = Math.random() * 2 + 4 + "s";
+        heart.style.animationDuration = Math.random() * 2 + 5 + "s";
         document.body.appendChild(heart);
 
-        setTimeout(() => heart.remove(), 6000);
+        setTimeout(() => heart.remove(), 7000);
     }
 
     setInterval(createHeart, 900);
