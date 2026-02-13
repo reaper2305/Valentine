@@ -7,42 +7,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-html, body {
+body {
     margin: 0;
-    height: 100%;
-    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: radial-gradient(circle at top, #fff1f5, #ffe3ec);
+    overflow: hidden;
     font-family: 'Cormorant Garamond', serif;
 }
 
 /* Envelope */
 .envelope {
-    position: absolute;
-    width: 520px;
-    height: 320px;
+    width: 300px;
+    height: 200px;
     background: #f7d6df;
-    border-radius: 12px;
-    box-shadow: 0 30px 70px rgba(0,0,0,0.25);
-    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: float 2s ease-in-out infinite;
-    z-index: 5;
+    font-size: 50px;
+    cursor: pointer;
+    transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
-@keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-}
-
-.envelope::before {
-    content: "💌";
-    font-size: 48px;
-}
-
-.hidden {
-    display: none;
+.envelope.open {
+    transform: scale(0.8);
+    opacity: 0;
 }
 
 /* Letter */
@@ -51,48 +44,32 @@ html, body {
     width: 600px;
     padding: 80px 70px;
     background: #fffdf9;
-    box-shadow: 0 40px 90px rgba(0,0,0,0.25);
-    background-image:
-        linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px),
-        radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
-    background-size: 100% 34px, 3px 3px;
+    box-shadow: 0 35px 80px rgba(0,0,0,0.2);
+    border-radius: 8px;
     opacity: 0;
-    transform: scale(0.95);
-    transition: all 1.5s ease;
-    z-index: 10;
+    transform: translateY(40px);
+    transition: all 1.2s ease;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 100% 34px;
 }
 
-/* Fold */
+.letter.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fold corner */
 .letter::after {
     content: "";
     position: absolute;
     top: 0;
     right: 0;
-    border-width: 0 70px 70px 0;
+    border-width: 0 60px 60px 0;
     border-style: solid;
     border-color: transparent #f3e2e6 transparent transparent;
 }
 
-/* Candle glow */
-.letter::before {
-    content: "";
-    position: absolute;
-    inset: -20px;
-    background: radial-gradient(circle, rgba(255,200,180,0.35), transparent 70%);
-    z-index: -1;
-    animation: flicker 2s infinite;
-}
-
-@keyframes flicker {
-    0%,100% { opacity: .5; }
-    50% { opacity: .8; }
-}
-
-.show {
-    opacity: 1;
-    transform: scale(1);
-}
-
+/* Title */
 h1 {
     font-family: 'Great Vibes', cursive;
     font-size: 56px;
@@ -100,38 +77,11 @@ h1 {
     color: #c9184a;
 }
 
-.glow-name {
-    animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-    from { text-shadow: 0 0 10px rgba(201,24,74,.4); }
-    to { text-shadow: 0 0 30px rgba(201,24,74,.8); }
-}
-
+/* Paragraph */
 p {
     font-size: 22px;
     line-height: 36px;
     color: #444;
-}
-
-.hidden-line {
-    opacity: 0;
-    transition: opacity 2s ease;
-}
-
-.signature {
-    font-family: 'Great Vibes', cursive;
-    font-size: 40px;
-    text-align: right;
-    margin-top: 40px;
-    opacity: 0;
-    animation: sign 2s ease forwards;
-    animation-delay: 8s;
-}
-
-@keyframes sign {
-    to { opacity: 1; }
 }
 
 /* Buttons */
@@ -146,7 +96,6 @@ button {
     border-radius: 30px;
     border: none;
     cursor: pointer;
-    margin: 10px;
 }
 
 #yes {
@@ -155,45 +104,7 @@ button {
     box-shadow: 0 12px 30px rgba(201,24,74,.4);
 }
 
-/* Wax Seal */
-.seal {
-    position: absolute;
-    bottom: -35px;
-    left: 50%;
-    transform: translateX(-50%) scale(0);
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle at 30% 30%, #ff6b81, #a4133c);
-    border-radius: 50%;
-    color: white;
-    font-family: 'Great Vibes', cursive;
-    font-size: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: stamp 1s ease forwards;
-    animation-delay: 9s;
-}
-
-@keyframes stamp {
-    to { transform: translateX(-50%) scale(1); }
-}
-
-/* Floating petals & chocolates */
-.float {
-    position: absolute;
-    font-size: 26px;
-    animation: floatUp 14s linear infinite;
-    opacity: .7;
-}
-
-@keyframes floatUp {
-    0% { transform: translateY(110vh); opacity: 0; }
-    10% { opacity: 1; }
-    100% { transform: translateY(-10vh); opacity: 0; }
-}
-
-/* Final screen */
+/* Final Screen */
 .final {
     position: fixed;
     inset: 0;
@@ -201,10 +112,9 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     opacity: 0;
     transition: opacity 2s ease;
-    z-index: 20;
+    z-index: 10;
 }
 
 .final.show {
@@ -212,7 +122,9 @@ button {
 }
 
 .final h1 {
+    font-family: 'Great Vibes', cursive;
     font-size: 80px;
+    color: #c9184a;
     animation: heartbeat 2s infinite;
 }
 
@@ -220,29 +132,30 @@ button {
     0%,100% { transform: scale(1); }
     50% { transform: scale(1.05); }
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="envelope" id="envelope"></div>
+<div class="envelope" id="envelope">💌</div>
 
 <div class="letter" id="letter">
-    <h1>My dearest <span class="glow-name">Palak</span>,</h1>
+    <h1>My dearest Palak,</h1>
 
-    <p id="text"></p>
+    <p>
+        Somewhere between quiet moments  
+        and the way you smile without trying,  
+        you became something very special to me.  
 
-    <p class="hidden-line" id="hidden">
-        I’ve wanted to ask you this for a while now…  
-        and maybe, if you say yes, we could sit a little closer this Valentine’s 😌
+        So I wanted to ask you in the most sincere way…  
+
+        Will you be my Valentine?
     </p>
 
     <div class="buttons">
         <button id="yes">Yes 💕</button>
     </div>
-
-    <div class="signature">— Saneer</div>
-    <div class="seal">S</div>
 </div>
 
 <div class="final" id="final">
@@ -252,52 +165,19 @@ button {
 <script>
 const envelope = document.getElementById("envelope");
 const letter = document.getElementById("letter");
-const textEl = document.getElementById("text");
-const hidden = document.getElementById("hidden");
 const final = document.getElementById("final");
 
-const text = `If I were to write my feelings down,
-they would always begin with you.
-
-Somewhere between quiet moments
-and stolen smiles,
-you became my favorite thought.
-
-So tell me…
-will you be my Valentine?`;
-
-let i = 0;
-
 envelope.onclick = () => {
-    envelope.classList.add("hidden");
-    letter.classList.add("show");
-    type();
+    envelope.classList.add("open");
+    setTimeout(() => {
+        envelope.style.display = "none";
+        letter.classList.add("show");
+    }, 600);
 };
-
-function type() {
-    if (i < text.length) {
-        textEl.innerHTML += text.charAt(i);
-        i++;
-        setTimeout(type, 40);
-    } else {
-        setTimeout(() => hidden.style.opacity = 1, 2000);
-    }
-}
 
 document.getElementById("yes").onclick = () => {
     final.classList.add("show");
 };
-
-// Floating items
-const items = ["🌹","🍫","💌","✨"];
-setInterval(() => {
-    const el = document.createElement("div");
-    el.className = "float";
-    el.innerHTML = items[Math.floor(Math.random()*items.length)];
-    el.style.left = Math.random()*100 + "vw";
-    document.body.appendChild(el);
-    setTimeout(()=>el.remove(),14000);
-}, 1800);
 </script>
 
 </body>
