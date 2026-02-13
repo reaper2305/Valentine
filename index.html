@@ -4,98 +4,100 @@
 <meta charset="UTF-8">
 <title>For Palak 💖</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<!-- Romantic Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
     body {
         margin: 0;
         height: 100vh;
+        background: linear-gradient(135deg, #fff5f7, #ffe9ef);
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(135deg, #ffeef3, #fff8fb);
-        font-family: 'Poppins', sans-serif;
         overflow: hidden;
+        font-family: 'Cormorant Garamond', serif;
+        position: relative;
     }
 
-    .card {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(15px);
-        padding: 60px 50px;
-        border-radius: 30px;
-        box-shadow: 0 25px 60px rgba(255, 140, 170, 0.25);
-        text-align: center;
-        max-width: 500px;
+    /* Diary Page */
+    .diary {
+        background: #fffdf9;
+        width: 550px;
+        padding: 70px 60px;
+        border-radius: 12px;
+        box-shadow: 0 30px 70px rgba(0,0,0,0.15);
         position: relative;
         z-index: 2;
-        animation: fadeIn 1.5s ease;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+        background-size: 100% 32px;
     }
 
     h1 {
-        font-family: 'Playfair Display', serif;
-        color: #ff4d6d;
-        font-size: 34px;
-        margin-bottom: 25px;
+        font-family: 'Great Vibes', cursive;
+        font-size: 48px;
+        color: #c9184a;
+        margin-bottom: 30px;
+        text-align: center;
     }
 
     p {
-        font-size: 17px;
-        line-height: 1.9;
-        color: #555;
-        margin-bottom: 35px;
+        font-size: 22px;
+        line-height: 32px;
+        color: #444;
+        margin-bottom: 40px;
+    }
+
+    .buttons {
+        text-align: center;
+        margin-top: 30px;
     }
 
     button {
-        padding: 14px 32px;
-        font-size: 16px;
+        padding: 12px 28px;
+        font-size: 18px;
         border-radius: 30px;
         border: none;
         cursor: pointer;
-        margin: 12px;
+        margin: 10px;
+        font-family: 'Cormorant Garamond', serif;
         transition: all 0.3s ease;
-        font-family: 'Poppins', sans-serif;
     }
 
     #yesBtn {
-        background: linear-gradient(135deg, #ff6b81, #ff8fa3);
+        background: #ff4d6d;
         color: white;
-        box-shadow: 0 10px 25px rgba(255, 105, 135, 0.4);
+        box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
     }
 
     #yesBtn:hover {
-        transform: scale(1.08);
+        transform: scale(1.07);
     }
 
     #noBtn {
-        background-color: #f3f3f3;
+        background: #f3f3f3;
         color: #555;
     }
 
-    /* Floating hearts */
-    .heart {
+    /* Floating Romantic Elements */
+    .float {
         position: absolute;
-        font-size: 20px;
-        animation: floatUp 8s linear infinite;
-        opacity: 0.6;
+        font-size: 26px;
+        animation: floatUp 10s linear infinite;
+        opacity: 0.7;
     }
 
     @keyframes floatUp {
-        0% { transform: translateY(100vh); opacity: 0; }
+        0% { transform: translateY(110vh); opacity: 0; }
         10% { opacity: 1; }
         100% { transform: translateY(-10vh); opacity: 0; }
     }
 
-    /* Final Screen */
+    /* Final Love Screen */
     .final-screen {
         position: fixed;
         inset: 0;
-        background: linear-gradient(135deg, #ffd6e0, #fff0f5);
+        background: linear-gradient(135deg, #ffe3ec, #fff5f9);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -112,15 +114,15 @@
     }
 
     .final-text {
-        font-family: 'Playfair Display', serif;
-        font-size: 52px;
-        color: #ff4d6d;
-        animation: softGlow 2s infinite alternate;
+        font-family: 'Great Vibes', cursive;
+        font-size: 70px;
+        color: #c9184a;
+        animation: glow 2s infinite alternate;
     }
 
-    @keyframes softGlow {
-        from { text-shadow: 0 0 10px rgba(255, 105, 135, 0.4); }
-        to { text-shadow: 0 0 30px rgba(255, 105, 135, 0.8); }
+    @keyframes glow {
+        from { text-shadow: 0 0 10px rgba(255,77,109,0.4); }
+        to { text-shadow: 0 0 30px rgba(255,77,109,0.8); }
     }
 
 </style>
@@ -128,51 +130,54 @@
 
 <body>
 
-<div class="card" id="mainCard">
-    <h1>Palak, will you be my Valentine? 💖</h1>
+<div class="diary" id="mainPage">
+    <h1>My dearest Palak… 💖</h1>
 
     <p>
-        Not because it’s Valentine’s Day.  
-        Not because of roses or candlelight.  
+        If I were to write this in my diary,  
+        it would begin with your name.  
 
-        But because every day feels softer,  
-        warmer, and a little more beautiful  
-        when you're around. 🌷  
+        Somewhere between quiet moments  
+        and soft smiles,  
 
-        I would really love to spend that day with you.
+        I realized something simple —  
+        I want to spend Valentine’s Day with you.  
+
+        So tell me…  
+        will you be my Valentine?
     </p>
 
-    <button id="yesBtn">Yes 💕</button>
-    <button id="noBtn">No</button>
+    <div class="buttons">
+        <button id="yesBtn">Yes 💕</button>
+        <button id="noBtn">No</button>
+    </div>
 </div>
 
 <div class="final-screen" id="finalScreen">
-    <div class="final-text">I love you Palak 💖</div>
+    <div class="final-text">I love you, Palak 💖</div>
 </div>
 
 <script>
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
-    const mainCard = document.getElementById("mainCard");
+    const mainPage = document.getElementById("mainPage");
     const finalScreen = document.getElementById("finalScreen");
 
     let noClicks = 0;
     let yesScale = 1;
 
     const noResponses = [
-        "Are you sure? 🌸",
-        "Think again… I’d make it special 💌",
-        "Still no? I’ll bring extra chocolates 🍫",
-        "Okay… I’ll stop asking now 😅"
+        "Are you sure? 🌹",
+        "Think again… I’ll bring chocolates 🍫",
+        "Still no? I wrote this just for you 💌",
+        "Okay… I’ll wait patiently 😅"
     ];
 
     noBtn.addEventListener("click", () => {
         if (noClicks < noResponses.length) {
             noBtn.innerText = noResponses[noClicks];
-
-            yesScale += 0.12;
+            yesScale += 0.15;
             yesBtn.style.transform = `scale(${yesScale})`;
-
             noClicks++;
         } else {
             noBtn.innerText = "Okay… yes 💕";
@@ -183,26 +188,26 @@
     yesBtn.addEventListener("click", showFinal);
 
     function showFinal() {
-        mainCard.style.opacity = "0";
+        mainPage.style.opacity = "0";
         setTimeout(() => {
             finalScreen.classList.add("show-final");
-        }, 700);
+        }, 800);
     }
 
-    // Floating hearts
-    function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "💗";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = Math.random() * 14 + 18 + "px";
-        heart.style.animationDuration = Math.random() * 3 + 5 + "s";
-        document.body.appendChild(heart);
+    // Floating romantic items
+    const items = ["🌹","🍫","💌","💖","✨"];
 
-        setTimeout(() => heart.remove(), 8000);
+    function createFloat() {
+        const el = document.createElement("div");
+        el.classList.add("float");
+        el.innerHTML = items[Math.floor(Math.random() * items.length)];
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.animationDuration = Math.random() * 5 + 8 + "s";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 12000);
     }
 
-    setInterval(createHeart, 1000);
+    setInterval(createFloat, 1500);
 </script>
 
 </body>
