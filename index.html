@@ -14,69 +14,49 @@ body {
     justify-content: center;
     align-items: center;
     background: radial-gradient(circle at top, #fff1f5, #ffe3ec);
-    font-family: 'Cormorant Garamond', serif;
     overflow: hidden;
-}
-
-/* Envelope */
-.envelope {
-    width: 320px;
-    height: 200px;
-    background: #f6cdd7;
-    border-radius: 12px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    cursor: pointer;
-    transition: all 0.6s ease;
-    z-index: 2;
-}
-
-.envelope:hover {
-    transform: scale(1.05);
-}
-
-.envelope span {
-    font-size: 42px;
-}
-
-.envelope p {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #7a1e3a;
+    font-family: 'Cormorant Garamond', serif;
+    position: relative;
 }
 
 /* Letter */
 .letter {
-    position: absolute;
+    position: relative;
     width: 600px;
     padding: 80px 70px;
     background: #fffdf9;
-    box-shadow: 0 35px 80px rgba(0,0,0,0.2);
     border-radius: 8px;
-    opacity: 0;
-    transform: scale(0.9);
-    transition: all 1s ease;
-    display: none;
+    box-shadow: 0 40px 90px rgba(0,0,0,0.2);
+    background-image:
+        linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px),
+        radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 100% 34px, 3px 3px;
 }
 
-.letter.show {
-    display: block;
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* Fold */
+/* Paper fold */
 .letter::after {
     content: "";
     position: absolute;
     top: 0;
     right: 0;
-    border-width: 0 60px 60px 0;
+    border-width: 0 70px 70px 0;
     border-style: solid;
     border-color: transparent #f3e2e6 transparent transparent;
+}
+
+/* Candle glow */
+.letter::before {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle, rgba(255,210,190,0.35), transparent 70%);
+    z-index: -1;
+    animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+    0%,100% { opacity: .5; }
+    50% { opacity: .8; }
 }
 
 h1 {
@@ -92,7 +72,19 @@ p {
     color: #444;
 }
 
-/* Button */
+.spice {
+    font-style: italic;
+    color: #a4133c;
+}
+
+.signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 42px;
+    text-align: right;
+    margin-top: 50px;
+    color: #a4133c;
+}
+
 .buttons {
     text-align: center;
     margin-top: 40px;
@@ -104,11 +96,59 @@ button {
     border-radius: 30px;
     border: none;
     cursor: pointer;
-    background: #c9184a;
-    color: white;
+    margin: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    transition: transform 0.3s ease;
 }
 
-/* Final */
+#yes {
+    background: #c9184a;
+    color: white;
+    box-shadow: 0 12px 30px rgba(201,24,74,.4);
+}
+
+#yes:hover {
+    transform: scale(1.07);
+}
+
+#no {
+    background: #f3f3f3;
+    color: #555;
+}
+
+/* Wax Seal */
+.seal {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #ff6b81, #a4133c);
+    border-radius: 50%;
+    color: white;
+    font-family: 'Great Vibes', cursive;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Floating items */
+.float {
+    position: absolute;
+    font-size: 26px;
+    animation: floatUp 14s linear infinite;
+    opacity: .7;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(110vh); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* Final screen */
 .final {
     position: fixed;
     inset: 0;
@@ -118,7 +158,7 @@ button {
     align-items: center;
     opacity: 0;
     transition: opacity 2s ease;
-    z-index: 5;
+    z-index: 10;
 }
 
 .final.show {
@@ -142,12 +182,7 @@ button {
 
 <body>
 
-<div class="envelope" id="envelope">
-    <span>💌</span>
-    <p>Click to open</p>
-</div>
-
-<div class="letter" id="letter">
+<div class="letter">
     <h1>My dearest Palak,</h1>
 
     <p>
@@ -155,14 +190,25 @@ button {
         and the way you smile without trying,  
         you became something very special to me.  
 
-        So today, I’m asking from the heart…  
+        Valentine’s Day may come and go,  
+        but what I feel when I’m around you stays.  
 
-        Will you be my Valentine?
+        So today, I’m asking simply…  
+        will you be my Valentine?
+    </p>
+
+    <p class="spice">
+        And maybe… if you say yes,  
+        we could sit just a little closer than usual. 😌
     </p>
 
     <div class="buttons">
-        <button id="yesBtn">Yes 💕</button>
+        <button id="yes">Yes 💕</button>
+        <button id="no">No</button>
     </div>
+
+    <div class="signature">— Saneer</div>
+    <div class="seal">S</div>
 </div>
 
 <div class="final" id="final">
@@ -170,22 +216,71 @@ button {
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+const final = document.getElementById("final");
 
-    const envelope = document.getElementById("envelope");
-    const letter = document.getElementById("letter");
-    const final = document.getElementById("final");
-    const yesBtn = document.getElementById("yesBtn");
+let noClicks = 0;
+let yesScale = 1;
 
-    envelope.addEventListener("click", function() {
-        envelope.style.display = "none";
-        letter.classList.add("show");
-    });
+const responses = [
+    "Are you sure? 🌹",
+    "I even sealed this with love 💌",
+    "Still no? I wrote this from the heart 💖",
+    "Okay… I’ll wait patiently 😌"
+];
 
-    yesBtn.addEventListener("click", function() {
-        final.classList.add("show");
-    });
+no.onclick = function() {
+    if (noClicks < responses.length) {
+        no.innerText = responses[noClicks];
+        yesScale += 0.15;
+        yes.style.transform = `scale(${yesScale})`;
+        noClicks++;
+    } else {
+        no.innerText = "Okay… yes 💕";
+        no.onclick = showFinal;
+    }
+};
 
+yes.onclick = showFinal;
+
+function showFinal() {
+    final.classList.add("show");
+
+    // Petal burst
+    for (let i = 0; i < 30; i++) {
+        const el = document.createElement("div");
+        el.className = "float";
+        el.innerHTML = "🌹";
+        el.style.left = Math.random()*100 + "vw";
+        el.style.animationDuration = (Math.random()*5+5) + "s";
+        document.body.appendChild(el);
+        setTimeout(()=>el.remove(),10000);
+    }
+}
+
+// Background floating items
+const items = ["🌹","🍫","💌","✨"];
+setInterval(() => {
+    const el = document.createElement("div");
+    el.className = "float";
+    el.innerHTML = items[Math.floor(Math.random()*items.length)];
+    el.style.left = Math.random()*100 + "vw";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),14000);
+}, 2000);
+
+// Sparkle cursor
+document.addEventListener("mousemove", e => {
+    const spark = document.createElement("div");
+    spark.style.position = "absolute";
+    spark.style.left = e.pageX + "px";
+    spark.style.top = e.pageY + "px";
+    spark.style.fontSize = "12px";
+    spark.innerHTML = "✨";
+    spark.style.pointerEvents = "none";
+    document.body.appendChild(spark);
+    setTimeout(()=>spark.remove(),600);
 });
 </script>
 
