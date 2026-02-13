@@ -7,188 +7,174 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: radial-gradient(circle at top, #fff1f5, #ffe3ec);
-    overflow: hidden;
-    font-family: 'Cormorant Garamond', serif;
-    position: relative;
-}
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #fff3f6, #ffe6ec);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        font-family: 'Cormorant Garamond', serif;
+        position: relative;
+    }
 
-/* Letter */
-.letter {
-    position: relative;
-    width: 600px;
-    padding: 80px 70px;
-    background: #fffdf9;
-    border-radius: 8px;
-    box-shadow: 0 40px 90px rgba(0,0,0,0.2);
-    background-image:
-        linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px),
-        radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
-    background-size: 100% 34px, 3px 3px;
-}
+    /* Paper */
+    .letter {
+        position: relative;
+        background: #fffdf9;
+        width: 600px;
+        padding: 80px 70px;
+        border-radius: 10px;
+        box-shadow: 0 35px 80px rgba(0,0,0,0.18);
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+        background-size: 100% 34px;
+        z-index: 2;
+        transition: opacity 1s ease;
+    }
 
-/* Paper fold */
-.letter::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-width: 0 70px 70px 0;
-    border-style: solid;
-    border-color: transparent #f3e2e6 transparent transparent;
-}
+    /* Paper fold */
+    .letter::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-width: 0 60px 60px 0;
+        border-style: solid;
+        border-color: transparent #f7e7ea transparent transparent;
+    }
 
-/* Candle glow */
-.letter::before {
-    content: "";
-    position: absolute;
-    inset: -20px;
-    background: radial-gradient(circle, rgba(255,210,190,0.35), transparent 70%);
-    z-index: -1;
-    animation: flicker 2s infinite;
-}
+    h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 52px;
+        color: #c9184a;
+        text-align: center;
+        margin-bottom: 35px;
+    }
 
-@keyframes flicker {
-    0%,100% { opacity: .5; }
-    50% { opacity: .8; }
-}
+    p {
+        font-size: 22px;
+        line-height: 36px;
+        color: #444;
+        margin-bottom: 40px;
+    }
 
-h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 56px;
-    text-align: center;
-    color: #c9184a;
-}
+    .signature {
+        font-family: 'Great Vibes', cursive;
+        font-size: 40px;
+        margin-top: 40px;
+        text-align: right;
+        color: #a4133c;
+    }
 
-p {
-    font-size: 22px;
-    line-height: 36px;
-    color: #444;
-}
+    .buttons {
+        text-align: center;
+        margin-top: 30px;
+    }
 
-.spice {
-    font-style: italic;
-    color: #a4133c;
-}
+    button {
+        padding: 12px 28px;
+        font-size: 18px;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        margin: 10px;
+        font-family: 'Cormorant Garamond', serif;
+        transition: all 0.3s ease;
+    }
 
-.signature {
-    font-family: 'Great Vibes', cursive;
-    font-size: 42px;
-    text-align: right;
-    margin-top: 50px;
-    color: #a4133c;
-}
+    #yesBtn {
+        background: #c9184a;
+        color: white;
+        box-shadow: 0 12px 30px rgba(201,24,74,0.4);
+    }
 
-.buttons {
-    text-align: center;
-    margin-top: 40px;
-}
+    #yesBtn:hover {
+        transform: scale(1.07);
+    }
 
-button {
-    padding: 12px 30px;
-    font-size: 18px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    margin: 10px;
-    font-family: 'Cormorant Garamond', serif;
-    transition: transform 0.3s ease;
-}
+    #noBtn {
+        background: #f3f3f3;
+        color: #555;
+    }
 
-#yes {
-    background: #c9184a;
-    color: white;
-    box-shadow: 0 12px 30px rgba(201,24,74,.4);
-}
+    /* Wax Seal */
+    .seal {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70px;
+        height: 70px;
+        background: radial-gradient(circle at 30% 30%, #ff6b81, #a4133c);
+        border-radius: 50%;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Great Vibes', cursive;
+        font-size: 28px;
+        color: white;
+    }
 
-#yes:hover {
-    transform: scale(1.07);
-}
+    /* Floating elements */
+    .float {
+        position: absolute;
+        font-size: 26px;
+        animation: floatUp 12s linear infinite;
+        opacity: 0.7;
+    }
 
-#no {
-    background: #f3f3f3;
-    color: #555;
-}
+    @keyframes floatUp {
+        0% { transform: translateY(110vh); opacity: 0; }
+        10% { opacity: 1; }
+        100% { transform: translateY(-10vh); opacity: 0; }
+    }
 
-/* Wax Seal */
-.seal {
-    position: absolute;
-    bottom: -35px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle at 30% 30%, #ff6b81, #a4133c);
-    border-radius: 50%;
-    color: white;
-    font-family: 'Great Vibes', cursive;
-    font-size: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    /* Final screen */
+    .final-screen {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #ffe3ec, #fff5f9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 1.5s ease;
+        z-index: 5;
+    }
 
-/* Floating items */
-.float {
-    position: absolute;
-    font-size: 26px;
-    animation: floatUp 14s linear infinite;
-    opacity: .7;
-}
+    .show-final {
+        opacity: 1;
+        pointer-events: all;
+    }
 
-@keyframes floatUp {
-    0% { transform: translateY(110vh); opacity: 0; }
-    10% { opacity: 1; }
-    100% { transform: translateY(-10vh); opacity: 0; }
-}
+    .final-text {
+        font-family: 'Great Vibes', cursive;
+        font-size: 80px;
+        color: #c9184a;
+        animation: glow 2s infinite alternate;
+    }
 
-/* Final screen */
-.final {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle, #ffe3ec, #fff5f9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 2s ease;
-    z-index: 10;
-}
-
-.final.show {
-    opacity: 1;
-}
-
-.final h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 80px;
-    color: #c9184a;
-    animation: heartbeat 2s infinite;
-}
-
-@keyframes heartbeat {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
+    @keyframes glow {
+        from { text-shadow: 0 0 10px rgba(201,24,74,0.4); }
+        to { text-shadow: 0 0 40px rgba(201,24,74,0.9); }
+    }
 
 </style>
 </head>
 
 <body>
 
-<div class="letter">
-    <h1>My dearest Palak,</h1>
+<div class="letter" id="mainLetter">
+    <h1>My dearest Palak…</h1>
 
     <p>
         Somewhere between quiet conversations  
-        and the way you smile without trying,  
-        you became something very special to me.  
+        and the way you smile when you don’t realize I’m looking,  
+        I found something beautiful.  
 
         Valentine’s Day may come and go,  
         but what I feel when I’m around you stays.  
@@ -197,91 +183,69 @@ button {
         will you be my Valentine?
     </p>
 
-    <p class="spice">
-        And maybe… if you say yes,  
-        we could sit just a little closer than usual. 😌
-    </p>
-
     <div class="buttons">
-        <button id="yes">Yes 💕</button>
-        <button id="no">No</button>
+        <button id="yesBtn">Yes 💕</button>
+        <button id="noBtn">No</button>
     </div>
 
     <div class="signature">— Saneer</div>
     <div class="seal">S</div>
 </div>
 
-<div class="final" id="final">
-    <h1>I love you, Palak 💖</h1>
+<div class="final-screen" id="finalScreen">
+    <div class="final-text">I love you, Palak 💖</div>
 </div>
 
 <script>
-const yes = document.getElementById("yes");
-const no = document.getElementById("no");
-const final = document.getElementById("final");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const mainLetter = document.getElementById("mainLetter");
+    const finalScreen = document.getElementById("finalScreen");
 
-let noClicks = 0;
-let yesScale = 1;
+    let noClicks = 0;
+    let yesScale = 1;
 
-const responses = [
-    "Are you sure? 🌹",
-    "I even sealed this with love 💌",
-    "Still no? I wrote this from the heart 💖",
-    "Okay… I’ll wait patiently 😌"
-];
+    const noResponses = [
+        "Are you sure? 🌹",
+        "I even sealed this with love… 💌",
+        "Still no? I wrote this from the heart 💖",
+        "Okay… I’ll wait patiently 😌"
+    ];
 
-no.onclick = function() {
-    if (noClicks < responses.length) {
-        no.innerText = responses[noClicks];
-        yesScale += 0.15;
-        yes.style.transform = `scale(${yesScale})`;
-        noClicks++;
-    } else {
-        no.innerText = "Okay… yes 💕";
-        no.onclick = showFinal;
+    noBtn.addEventListener("click", () => {
+        if (noClicks < noResponses.length) {
+            noBtn.innerText = noResponses[noClicks];
+            yesScale += 0.15;
+            yesBtn.style.transform = `scale(${yesScale})`;
+            noClicks++;
+        } else {
+            noBtn.innerText = "Okay… yes 💕";
+            noBtn.onclick = showFinal;
+        }
+    });
+
+    yesBtn.addEventListener("click", showFinal);
+
+    function showFinal() {
+        mainLetter.style.opacity = "0";
+        setTimeout(() => {
+            finalScreen.classList.add("show-final");
+        }, 900);
     }
-};
 
-yes.onclick = showFinal;
+    const items = ["🌹","🍫","💌","✨","💖"];
 
-function showFinal() {
-    final.classList.add("show");
-
-    // Petal burst
-    for (let i = 0; i < 30; i++) {
+    function createFloat() {
         const el = document.createElement("div");
-        el.className = "float";
-        el.innerHTML = "🌹";
-        el.style.left = Math.random()*100 + "vw";
-        el.style.animationDuration = (Math.random()*5+5) + "s";
+        el.classList.add("float");
+        el.innerHTML = items[Math.floor(Math.random() * items.length)];
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.animationDuration = Math.random() * 6 + 10 + "s";
         document.body.appendChild(el);
-        setTimeout(()=>el.remove(),10000);
+        setTimeout(() => el.remove(), 15000);
     }
-}
 
-// Background floating items
-const items = ["🌹","🍫","💌","✨"];
-setInterval(() => {
-    const el = document.createElement("div");
-    el.className = "float";
-    el.innerHTML = items[Math.floor(Math.random()*items.length)];
-    el.style.left = Math.random()*100 + "vw";
-    document.body.appendChild(el);
-    setTimeout(()=>el.remove(),14000);
-}, 2000);
-
-// Sparkle cursor
-document.addEventListener("mousemove", e => {
-    const spark = document.createElement("div");
-    spark.style.position = "absolute";
-    spark.style.left = e.pageX + "px";
-    spark.style.top = e.pageY + "px";
-    spark.style.fontSize = "12px";
-    spark.innerHTML = "✨";
-    spark.style.pointerEvents = "none";
-    document.body.appendChild(spark);
-    setTimeout(()=>spark.remove(),600);
-});
+    setInterval(createFloat, 2000);
 </script>
 
 </body>
