@@ -4,14 +4,13 @@
 <meta charset="UTF-8">
 <title>For Palak 💖</title>
 
-<!-- Romantic Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
     body {
         margin: 0;
         height: 100vh;
-        background: linear-gradient(135deg, #fff5f7, #ffe9ef);
+        background: linear-gradient(135deg, #fff3f6, #ffe6ec);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -20,32 +19,52 @@
         position: relative;
     }
 
-    /* Diary Page */
-    .diary {
-        background: #fffdf9;
-        width: 550px;
-        padding: 70px 60px;
-        border-radius: 12px;
-        box-shadow: 0 30px 70px rgba(0,0,0,0.15);
+    /* Paper */
+    .letter {
         position: relative;
-        z-index: 2;
+        background: #fffdf9;
+        width: 600px;
+        padding: 80px 70px;
+        border-radius: 10px;
+        box-shadow: 0 35px 80px rgba(0,0,0,0.18);
         background-image: linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
-        background-size: 100% 32px;
+        background-size: 100% 34px;
+        z-index: 2;
+        transition: opacity 1s ease;
+    }
+
+    /* Paper fold */
+    .letter::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-width: 0 60px 60px 0;
+        border-style: solid;
+        border-color: transparent #f7e7ea transparent transparent;
     }
 
     h1 {
         font-family: 'Great Vibes', cursive;
-        font-size: 48px;
+        font-size: 52px;
         color: #c9184a;
-        margin-bottom: 30px;
         text-align: center;
+        margin-bottom: 35px;
     }
 
     p {
         font-size: 22px;
-        line-height: 32px;
+        line-height: 36px;
         color: #444;
         margin-bottom: 40px;
+    }
+
+    .signature {
+        font-family: 'Great Vibes', cursive;
+        font-size: 40px;
+        margin-top: 40px;
+        text-align: right;
+        color: #a4133c;
     }
 
     .buttons {
@@ -65,9 +84,9 @@
     }
 
     #yesBtn {
-        background: #ff4d6d;
+        background: #c9184a;
         color: white;
-        box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
+        box-shadow: 0 12px 30px rgba(201,24,74,0.4);
     }
 
     #yesBtn:hover {
@@ -79,11 +98,30 @@
         color: #555;
     }
 
-    /* Floating Romantic Elements */
+    /* Wax Seal */
+    .seal {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70px;
+        height: 70px;
+        background: radial-gradient(circle at 30% 30%, #ff6b81, #a4133c);
+        border-radius: 50%;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Great Vibes', cursive;
+        font-size: 28px;
+        color: white;
+    }
+
+    /* Floating elements */
     .float {
         position: absolute;
         font-size: 26px;
-        animation: floatUp 10s linear infinite;
+        animation: floatUp 12s linear infinite;
         opacity: 0.7;
     }
 
@@ -93,7 +131,7 @@
         100% { transform: translateY(-10vh); opacity: 0; }
     }
 
-    /* Final Love Screen */
+    /* Final screen */
     .final-screen {
         position: fixed;
         inset: 0;
@@ -115,14 +153,14 @@
 
     .final-text {
         font-family: 'Great Vibes', cursive;
-        font-size: 70px;
+        font-size: 80px;
         color: #c9184a;
         animation: glow 2s infinite alternate;
     }
 
     @keyframes glow {
-        from { text-shadow: 0 0 10px rgba(255,77,109,0.4); }
-        to { text-shadow: 0 0 30px rgba(255,77,109,0.8); }
+        from { text-shadow: 0 0 10px rgba(201,24,74,0.4); }
+        to { text-shadow: 0 0 40px rgba(201,24,74,0.9); }
     }
 
 </style>
@@ -130,20 +168,18 @@
 
 <body>
 
-<div class="diary" id="mainPage">
-    <h1>My dearest Palak… 💖</h1>
+<div class="letter" id="mainLetter">
+    <h1>My dearest Palak…</h1>
 
     <p>
-        If I were to write this in my diary,  
-        it would begin with your name.  
+        Somewhere between quiet conversations  
+        and the way you smile when you don’t realize I’m looking,  
+        I found something beautiful.  
 
-        Somewhere between quiet moments  
-        and soft smiles,  
+        Valentine’s Day may come and go,  
+        but what I feel when I’m around you stays.  
 
-        I realized something simple —  
-        I want to spend Valentine’s Day with you.  
-
-        So tell me…  
+        So today, I’m asking simply…  
         will you be my Valentine?
     </p>
 
@@ -151,6 +187,9 @@
         <button id="yesBtn">Yes 💕</button>
         <button id="noBtn">No</button>
     </div>
+
+    <div class="signature">— Saneer</div>
+    <div class="seal">S</div>
 </div>
 
 <div class="final-screen" id="finalScreen">
@@ -160,7 +199,7 @@
 <script>
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
-    const mainPage = document.getElementById("mainPage");
+    const mainLetter = document.getElementById("mainLetter");
     const finalScreen = document.getElementById("finalScreen");
 
     let noClicks = 0;
@@ -168,9 +207,9 @@
 
     const noResponses = [
         "Are you sure? 🌹",
-        "Think again… I’ll bring chocolates 🍫",
-        "Still no? I wrote this just for you 💌",
-        "Okay… I’ll wait patiently 😅"
+        "I even sealed this with love… 💌",
+        "Still no? I wrote this from the heart 💖",
+        "Okay… I’ll wait patiently 😌"
     ];
 
     noBtn.addEventListener("click", () => {
@@ -188,26 +227,25 @@
     yesBtn.addEventListener("click", showFinal);
 
     function showFinal() {
-        mainPage.style.opacity = "0";
+        mainLetter.style.opacity = "0";
         setTimeout(() => {
             finalScreen.classList.add("show-final");
-        }, 800);
+        }, 900);
     }
 
-    // Floating romantic items
-    const items = ["🌹","🍫","💌","💖","✨"];
+    const items = ["🌹","🍫","💌","✨","💖"];
 
     function createFloat() {
         const el = document.createElement("div");
         el.classList.add("float");
         el.innerHTML = items[Math.floor(Math.random() * items.length)];
         el.style.left = Math.random() * 100 + "vw";
-        el.style.animationDuration = Math.random() * 5 + 8 + "s";
+        el.style.animationDuration = Math.random() * 6 + 10 + "s";
         document.body.appendChild(el);
-        setTimeout(() => el.remove(), 12000);
+        setTimeout(() => el.remove(), 15000);
     }
 
-    setInterval(createFloat, 1500);
+    setInterval(createFloat, 2000);
 </script>
 
 </body>
