@@ -7,245 +7,297 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        background: linear-gradient(135deg, #fff3f6, #ffe6ec);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        font-family: 'Cormorant Garamond', serif;
-        position: relative;
-    }
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at top, #fff1f5, #ffe3ec);
+    font-family: 'Cormorant Garamond', serif;
+}
 
-    /* Paper */
-    .letter {
-        position: relative;
-        background: #fffdf9;
-        width: 600px;
-        padding: 80px 70px;
-        border-radius: 10px;
-        box-shadow: 0 35px 80px rgba(0,0,0,0.18);
-        background-image: linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
-        background-size: 100% 34px;
-        z-index: 2;
-        transition: opacity 1s ease;
-    }
+/* Envelope */
+.envelope {
+    position: absolute;
+    width: 520px;
+    height: 320px;
+    background: #f7d6df;
+    border-radius: 12px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 2s ease-in-out infinite;
+    z-index: 5;
+}
 
-    /* Paper fold */
-    .letter::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        border-width: 0 60px 60px 0;
-        border-style: solid;
-        border-color: transparent #f7e7ea transparent transparent;
-    }
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
 
-    h1 {
-        font-family: 'Great Vibes', cursive;
-        font-size: 52px;
-        color: #c9184a;
-        text-align: center;
-        margin-bottom: 35px;
-    }
+.envelope::before {
+    content: "💌";
+    font-size: 48px;
+}
 
-    p {
-        font-size: 22px;
-        line-height: 36px;
-        color: #444;
-        margin-bottom: 40px;
-    }
+.hidden {
+    display: none;
+}
 
-    .signature {
-        font-family: 'Great Vibes', cursive;
-        font-size: 40px;
-        margin-top: 40px;
-        text-align: right;
-        color: #a4133c;
-    }
+/* Letter */
+.letter {
+    position: absolute;
+    width: 600px;
+    padding: 80px 70px;
+    background: #fffdf9;
+    box-shadow: 0 40px 90px rgba(0,0,0,0.25);
+    background-image:
+        linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px),
+        radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 100% 34px, 3px 3px;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 1.5s ease;
+    z-index: 10;
+}
 
-    .buttons {
-        text-align: center;
-        margin-top: 30px;
-    }
+/* Fold */
+.letter::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 70px 70px 0;
+    border-style: solid;
+    border-color: transparent #f3e2e6 transparent transparent;
+}
 
-    button {
-        padding: 12px 28px;
-        font-size: 18px;
-        border-radius: 30px;
-        border: none;
-        cursor: pointer;
-        margin: 10px;
-        font-family: 'Cormorant Garamond', serif;
-        transition: all 0.3s ease;
-    }
+/* Candle glow */
+.letter::before {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle, rgba(255,200,180,0.35), transparent 70%);
+    z-index: -1;
+    animation: flicker 2s infinite;
+}
 
-    #yesBtn {
-        background: #c9184a;
-        color: white;
-        box-shadow: 0 12px 30px rgba(201,24,74,0.4);
-    }
+@keyframes flicker {
+    0%,100% { opacity: .5; }
+    50% { opacity: .8; }
+}
 
-    #yesBtn:hover {
-        transform: scale(1.07);
-    }
+.show {
+    opacity: 1;
+    transform: scale(1);
+}
 
-    #noBtn {
-        background: #f3f3f3;
-        color: #555;
-    }
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 56px;
+    text-align: center;
+    color: #c9184a;
+}
 
-    /* Wax Seal */
-    .seal {
-        position: absolute;
-        bottom: -30px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 70px;
-        height: 70px;
-        background: radial-gradient(circle at 30% 30%, #ff6b81, #a4133c);
-        border-radius: 50%;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Great Vibes', cursive;
-        font-size: 28px;
-        color: white;
-    }
+.glow-name {
+    animation: glow 2s infinite alternate;
+}
 
-    /* Floating elements */
-    .float {
-        position: absolute;
-        font-size: 26px;
-        animation: floatUp 12s linear infinite;
-        opacity: 0.7;
-    }
+@keyframes glow {
+    from { text-shadow: 0 0 10px rgba(201,24,74,.4); }
+    to { text-shadow: 0 0 30px rgba(201,24,74,.8); }
+}
 
-    @keyframes floatUp {
-        0% { transform: translateY(110vh); opacity: 0; }
-        10% { opacity: 1; }
-        100% { transform: translateY(-10vh); opacity: 0; }
-    }
+p {
+    font-size: 22px;
+    line-height: 36px;
+    color: #444;
+}
 
-    /* Final screen */
-    .final-screen {
-        position: fixed;
-        inset: 0;
-        background: linear-gradient(135deg, #ffe3ec, #fff5f9);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 1.5s ease;
-        z-index: 5;
-    }
+.hidden-line {
+    opacity: 0;
+    transition: opacity 2s ease;
+}
 
-    .show-final {
-        opacity: 1;
-        pointer-events: all;
-    }
+.signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 40px;
+    text-align: right;
+    margin-top: 40px;
+    opacity: 0;
+    animation: sign 2s ease forwards;
+    animation-delay: 8s;
+}
 
-    .final-text {
-        font-family: 'Great Vibes', cursive;
-        font-size: 80px;
-        color: #c9184a;
-        animation: glow 2s infinite alternate;
-    }
+@keyframes sign {
+    to { opacity: 1; }
+}
 
-    @keyframes glow {
-        from { text-shadow: 0 0 10px rgba(201,24,74,0.4); }
-        to { text-shadow: 0 0 40px rgba(201,24,74,0.9); }
-    }
+/* Buttons */
+.buttons {
+    text-align: center;
+    margin-top: 40px;
+}
 
+button {
+    padding: 12px 30px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#yes {
+    background: #c9184a;
+    color: white;
+    box-shadow: 0 12px 30px rgba(201,24,74,.4);
+}
+
+/* Wax Seal */
+.seal {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #ff6b81, #a4133c);
+    border-radius: 50%;
+    color: white;
+    font-family: 'Great Vibes', cursive;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: stamp 1s ease forwards;
+    animation-delay: 9s;
+}
+
+@keyframes stamp {
+    to { transform: translateX(-50%) scale(1); }
+}
+
+/* Floating petals & chocolates */
+.float {
+    position: absolute;
+    font-size: 26px;
+    animation: floatUp 14s linear infinite;
+    opacity: .7;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(110vh); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* Final screen */
+.final {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, #ffe3ec, #fff5f9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 2s ease;
+    z-index: 20;
+}
+
+.final.show {
+    opacity: 1;
+}
+
+.final h1 {
+    font-size: 80px;
+    animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
 </style>
 </head>
 
 <body>
 
-<div class="letter" id="mainLetter">
-    <h1>My dearest Palak…</h1>
+<div class="envelope" id="envelope"></div>
 
-    <p>
-        Somewhere between quiet conversations  
-        and the way you smile when you don’t realize I’m looking,  
-        I found something beautiful.  
+<div class="letter" id="letter">
+    <h1>My dearest <span class="glow-name">Palak</span>,</h1>
 
-        Valentine’s Day may come and go,  
-        but what I feel when I’m around you stays.  
+    <p id="text"></p>
 
-        So today, I’m asking simply…  
-        will you be my Valentine?
+    <p class="hidden-line" id="hidden">
+        I’ve wanted to ask you this for a while now…  
+        and maybe, if you say yes, we could sit a little closer this Valentine’s 😌
     </p>
 
     <div class="buttons">
-        <button id="yesBtn">Yes 💕</button>
-        <button id="noBtn">No</button>
+        <button id="yes">Yes 💕</button>
     </div>
 
     <div class="signature">— Saneer</div>
     <div class="seal">S</div>
 </div>
 
-<div class="final-screen" id="finalScreen">
-    <div class="final-text">I love you, Palak 💖</div>
+<div class="final" id="final">
+    <h1>I love you, Palak 💖</h1>
 </div>
 
 <script>
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-    const mainLetter = document.getElementById("mainLetter");
-    const finalScreen = document.getElementById("finalScreen");
+const envelope = document.getElementById("envelope");
+const letter = document.getElementById("letter");
+const textEl = document.getElementById("text");
+const hidden = document.getElementById("hidden");
+const final = document.getElementById("final");
 
-    let noClicks = 0;
-    let yesScale = 1;
+const text = `If I were to write my feelings down,
+they would always begin with you.
 
-    const noResponses = [
-        "Are you sure? 🌹",
-        "I even sealed this with love… 💌",
-        "Still no? I wrote this from the heart 💖",
-        "Okay… I’ll wait patiently 😌"
-    ];
+Somewhere between quiet moments
+and stolen smiles,
+you became my favorite thought.
 
-    noBtn.addEventListener("click", () => {
-        if (noClicks < noResponses.length) {
-            noBtn.innerText = noResponses[noClicks];
-            yesScale += 0.15;
-            yesBtn.style.transform = `scale(${yesScale})`;
-            noClicks++;
-        } else {
-            noBtn.innerText = "Okay… yes 💕";
-            noBtn.onclick = showFinal;
-        }
-    });
+So tell me…
+will you be my Valentine?`;
 
-    yesBtn.addEventListener("click", showFinal);
+let i = 0;
 
-    function showFinal() {
-        mainLetter.style.opacity = "0";
-        setTimeout(() => {
-            finalScreen.classList.add("show-final");
-        }, 900);
+envelope.onclick = () => {
+    envelope.classList.add("hidden");
+    letter.classList.add("show");
+    type();
+};
+
+function type() {
+    if (i < text.length) {
+        textEl.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(type, 40);
+    } else {
+        setTimeout(() => hidden.style.opacity = 1, 2000);
     }
+}
 
-    const items = ["🌹","🍫","💌","✨","💖"];
+document.getElementById("yes").onclick = () => {
+    final.classList.add("show");
+};
 
-    function createFloat() {
-        const el = document.createElement("div");
-        el.classList.add("float");
-        el.innerHTML = items[Math.floor(Math.random() * items.length)];
-        el.style.left = Math.random() * 100 + "vw";
-        el.style.animationDuration = Math.random() * 6 + 10 + "s";
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), 15000);
-    }
-
-    setInterval(createFloat, 2000);
+// Floating items
+const items = ["🌹","🍫","💌","✨"];
+setInterval(() => {
+    const el = document.createElement("div");
+    el.className = "float";
+    el.innerHTML = items[Math.floor(Math.random()*items.length)];
+    el.style.left = Math.random()*100 + "vw";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),14000);
+}, 1800);
 </script>
 
 </body>
