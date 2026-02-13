@@ -1,173 +1,163 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>For Palak 🔥</title>
+    <meta charset="UTF-8">
+    <title>For Palak 💖</title>
+
     <style>
         body {
             margin: 0;
             height: 100vh;
+            background: linear-gradient(135deg, #ffe6ec, #fff7fa);
             display: flex;
             justify-content: center;
             align-items: center;
-            background: radial-gradient(circle at top, #1a0008, #000);
             font-family: 'Segoe UI', sans-serif;
             overflow: hidden;
-            text-align: center;
-            color: white;
         }
 
         .card {
-            background: rgba(20, 0, 10, 0.95);
-            padding: 50px;
-            border-radius: 25px;
-            box-shadow: 0 25px 80px rgba(255, 0, 80, 0.4);
-            width: 440px;
-            transition: 0.6s ease;
-            position: relative;
-            z-index: 10;
+            background: white;
+            padding: 45px;
+            border-radius: 24px;
+            box-shadow: 0 20px 45px rgba(255, 120, 150, 0.25);
+            text-align: center;
+            max-width: 420px;
+            z-index: 2;
         }
 
         h1 {
             color: #ff4d6d;
-            font-size: 26px;
-            min-height: 60px;
+            font-size: 28px;
+            margin-bottom: 15px;
         }
 
         p {
+            color: #555;
             font-size: 16px;
-            color: #f8d7da;
-            margin-bottom: 25px;
-            line-height: 1.6;
+            line-height: 1.7;
+            margin-bottom: 30px;
         }
 
         button {
-            padding: 12px 30px;
+            padding: 12px 28px;
             font-size: 16px;
-            border: none;
             border-radius: 30px;
+            border: none;
             cursor: pointer;
             margin: 10px;
-            transition: transform 0.3s ease;
+            transition: transform 0.25s ease;
         }
 
         #yesBtn {
-            background: linear-gradient(135deg, #ff1f5a, #ff6b81);
+            background-color: #ff4d6d;
             color: white;
         }
 
         #noBtn {
-            background-color: #333;
-            color: #eee;
+            background-color: #eee;
+            color: #444;
         }
 
-        .final-screen {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle, #400012, #000);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 1.2s ease;
-            z-index: 20;
+        .message {
+            margin-top: 25px;
+            font-size: 18px;
+            color: #ff4d6d;
+            font-weight: 600;
+            min-height: 40px;
         }
 
-        .show-final {
-            opacity: 1;
-            pointer-events: all;
+        /* Floating hearts */
+        .heart {
+            position: absolute;
+            font-size: 18px;
+            animation: floatUp 6s linear infinite;
+            opacity: 0.8;
         }
 
-        .final-text {
-            font-size: 44px;
-            font-weight: bold;
-            color: #ff6b81;
-        }
-
-        .final-sub {
-            font-size: 22px;
-            margin-top: 15px;
-            color: #ffd6e0;
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="card" id="mainCard">
-    <h1 id="typing"></h1>
+<div class="card">
+    <h1>Palak, will you be my Valentine? 💖</h1>
 
     <p>
-        Dim lights. Slow music. 🍷  
-        Just you and me.  
-        This Valentine’s… I want you closer than ever.
+        I know Valentine’s is about hearts and roses…  
+        but for me, it’s really about *you*.  
+        Your smile, your warmth, and maybe  
+        sitting a little closer than usual 😌
     </p>
 
-    <button id="yesBtn">Yes 😈</button>
-    <button id="noBtn">No 😌</button>
-</div>
+    <button id="yesBtn">Yes 💕</button>
+    <button id="noBtn">No</button>
 
-<div class="final-screen" id="finalScreen">
-    <div class="final-text">Come here, Palak 🔥</div>
-    <div class="final-sub">Tonight belongs to us.</div>
+    <div class="message" id="message"></div>
 </div>
 
 <script>
-    // Typing effect
-    const text = "Palak, will you be my Valentine tonight? 🔥";
-    let i = 0;
-    function typeWriter() {
-        if (i < text.length) {
-            document.getElementById("typing").innerHTML += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50);
-        }
-    }
-    typeWriter();
-
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
-    const finalScreen = document.getElementById("finalScreen");
-    const mainCard = document.getElementById("mainCard");
+    const message = document.getElementById("message");
 
-    let attempts = 0;
+    let noClicks = 0;
     let yesScale = 1;
 
-    const messages = [
-        "Are you sure? 😏",
-        "Still saying no? 🍷",
-        "You're teasing me… 😌",
-        "Last chance, Palak 🔥"
+    const noResponses = [
+        "Hmm… think about it once more 😌",
+        "Still no? I’ll be on my best behavior 😉",
+        "Okay but… we’d look really cute together 💖",
+        "Alright, you win… or maybe you don’t 😏"
     ];
 
-    noBtn.addEventListener("click", function () {
+    noBtn.addEventListener("click", () => {
+        if (noClicks < noResponses.length) {
+            message.innerText = noResponses[noClicks];
 
-        if (attempts < 4) {
-
-            noBtn.innerText = messages[attempts];
-
-            yesScale += 0.25;
+            yesScale += 0.15;
             yesBtn.style.transform = `scale(${yesScale})`;
 
-            attempts++;
-
+            noClicks++;
         } else {
-            noBtn.innerText = "Fine… Yes 😈";
-            noBtn.removeEventListener("click", arguments.callee);
-            noBtn.addEventListener("click", showFinal);
+            noBtn.innerText = "Okay… yes 💕";
+            noBtn.onclick = yesClicked;
         }
-
     });
 
-    yesBtn.addEventListener("click", showFinal);
+    yesBtn.addEventListener("click", yesClicked);
 
-    function showFinal() {
-        mainCard.style.opacity = "0";
-        setTimeout(() => {
-            finalScreen.classList.add("show-final");
-        }, 600);
+    function yesClicked() {
+        message.innerText =
+            "That makes me smile more than you know 💖\nI’m really looking forward to Valentine’s with you, Palak.";
     }
 
+    // Floating hearts
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 14 + 16 + "px";
+        heart.style.animationDuration = Math.random() * 2 + 4 + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 900);
 </script>
 
 </body>
