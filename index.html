@@ -55,12 +55,10 @@
 
         #yesBtn:hover {
             background-color: #ff174f;
-            transform: scale(1.1);
         }
 
         #noBtn {
             background-color: #cccccc;
-            position: absolute;
         }
 
         .heart {
@@ -75,7 +73,6 @@
             100% { transform: translateY(-10vh); opacity: 0; }
         }
 
-        /* Final Scene */
         .final-screen {
             position: fixed;
             top: 0;
@@ -113,31 +110,31 @@
 </head>
 <body>
 
-    <audio autoplay loop>
-        <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8b86f3b68.mp3" type="audio/mpeg">
-    </audio>
+<audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8b86f3b68.mp3" type="audio/mpeg">
+</audio>
 
-    <div class="card" id="mainCard">
-        <h1 id="typing"></h1>
+<div class="card" id="mainCard">
+    <h1 id="typing"></h1>
 
-        <p>
-            Every time you smile, my world feels lighter.  
-            Every moment with you feels magical. ✨  
-            I don’t just want a day with you…  
-            I want forever moments with you.
-        </p>
+    <p>
+        Every time you smile, my world feels lighter.  
+        Every moment with you feels magical. ✨  
+        I don’t just want a day with you…  
+        I want forever moments with you.
+    </p>
 
-        <button id="yesBtn" onclick="sayYes()">Yes 💕</button>
-        <button id="noBtn">No 😢</button>
-    </div>
+    <button id="yesBtn" onclick="sayYes()">Yes 💕</button>
+    <button id="noBtn">No 😢</button>
+</div>
 
-    <div class="final-screen" id="finalScreen">
-        <div class="glow">I love you, Palak ❤️</div>
-        <div style="font-size:22px; margin-top:15px;">Forever & Always 💖</div>
-    </div>
+<div class="final-screen" id="finalScreen">
+    <div class="glow">I love you, Palak ❤️</div>
+    <div style="font-size:22px; margin-top:15px;">Forever & Always 💖</div>
+</div>
 
 <script>
-    // Typing animation
+    // Typing Animation
     const text = "Palak, will you be my Valentine? 💖";
     let i = 0;
     function typeWriter() {
@@ -149,13 +146,50 @@
     }
     typeWriter();
 
-    // No button escape
     const noBtn = document.getElementById("noBtn");
-    noBtn.addEventListener("mouseover", function() {
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 50);
-        noBtn.style.left = x + "px";
-        noBtn.style.top = y + "px";
+    const yesBtn = document.getElementById("yesBtn");
+
+    let scale = 1;
+    let attempts = 0;
+
+    const noTexts = [
+        "Are you sure? 🥺",
+        "Really sure? 😢",
+        "Think again 😏",
+        "Last chance 👀",
+        "You can't escape love 💘"
+    ];
+
+    document.addEventListener("mousemove", function(e) {
+        if (attempts >= 5) return;
+
+        const rect = noBtn.getBoundingClientRect();
+        const distance = Math.hypot(
+            e.clientX - (rect.left + rect.width / 2),
+            e.clientY - (rect.top + rect.height / 2)
+        );
+
+        if (distance < 80) {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+
+            noBtn.style.position = "absolute";
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+
+            noBtn.innerHTML = noTexts[attempts];
+
+            scale += 0.15;
+            yesBtn.style.transform = `scale(${scale})`;
+
+            attempts++;
+
+            if (attempts >= 5) {
+                noBtn.innerHTML = "Fine… Yes 💖";
+                noBtn.style.position = "static";
+                noBtn.onclick = sayYes;
+            }
+        }
     });
 
     // Floating hearts
@@ -171,7 +205,7 @@
     }
     setInterval(createHeart, 800);
 
-    // YES button action
+    // YES action
     function sayYes() {
         document.getElementById("mainCard").style.opacity = "0";
         setTimeout(() => {
@@ -186,3 +220,4 @@
 
 </body>
 </html>
+
